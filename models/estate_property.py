@@ -8,6 +8,9 @@ class EstateProperty(models.Model):
 
     active = fields.Boolean(string='Active', default=True)
     name = fields.Char(string='Name', required=True)
+    property_type_id = fields.Many2one("estate.property.type", string="Property Type")
+    buyer_id = fields.Many2one("res.partner", string="Buyer", copy=False)
+    seller_id = fields.Many2one("res.partner", string="Seller", required=True)
     description = fields.Text(string='Description')
     state = fields.Selection(
         string='Status',
