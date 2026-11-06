@@ -1,6 +1,6 @@
 {
     'name': "Real Estate",
-    'version': '19.0.1.0.0',
+    'version': '20.0.1.0.0',
     'depends': ['base'],
     'author': "Wehrend",
     'category': 'Category',
@@ -11,7 +11,7 @@
     'installable': True,
     # data files always loaded at installation
     'data': [
-        'security/ir.model.access.csv',
+        'security/ir.access.csv',
         'views/estate_property_views.xml',
         'views/estate_property_type_views.xml',
         'views/estate_property_tags_views.xml',
