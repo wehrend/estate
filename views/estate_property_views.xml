@@ -13,6 +13,7 @@
         <list string="Real Estate Properties">
             <field name="name"/>
             <field name="postcode"/>
+            <field name="property_type_id"/>
             <field name="bedrooms"/>
             <field name="living_area"/>
             <field name="expected_price"/>
@@ -63,8 +64,10 @@
                     </group>
                     </page>
                     <page string="Other Info">
+                     <group>
                         <field name="seller_id"/>
                         <field name="buyer_id"/>
+                    </group>
                     </page>
 
 
