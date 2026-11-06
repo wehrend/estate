@@ -1,4 +1,4 @@
-from dateutil import relativedelta
+from dateutil.relativedelta import relativedelta
 
 from odoo import api, models, fields
 
@@ -11,8 +11,10 @@ class EstatePropertyOffer(models.Model):
         ('accepted', 'Accepted'),
         ('refused', 'Refused')
     ], string='Status', copy=False)
+    validity = fields.Integer(string='Validity (days)', default=7)
     partner_id = fields.Many2one('res.partner', string='Partner', required=True)
     property_id = fields.Many2one('estate.property', string='Property', required=True)
+    
 
     # Computed
     date_deadline = fields.Date(string="Deadline", compute="_compute_date_deadline", inverse="_inverse_date_deadline")
