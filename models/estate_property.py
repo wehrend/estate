@@ -34,6 +34,7 @@ class EstateProperty(models.Model):
         string='Garden Orientation',
         selection=[('north', 'North'), ('south', 'South'), ('east', 'East'), ('west', 'West')]
     )
+    offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offers")
 
     def _default_date_availability(self):
             return fields.Date.context_today(self) + relativedelta(months=3)
