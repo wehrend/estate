@@ -6,8 +6,16 @@ class EstateProperty(models.Model):
     _name = 'estate.property'
     _description = 'Estate Property'
 
+    active = fields.Boolean(string='Active', default=True),
     name = fields.Char(string='Name', required=True)
     description = fields.Text(string='Description')
+    state = fields.Selection(
+        string='Status',
+        selection=[('new', 'New'), ('offer_received', 'Offer Received'), (' offer_accepted', 'Offer Accepted'), ('sold', 'Sold'), ('canceled', 'Canceled')],
+        required=True,
+        copy=False,
+        default='new'
+    )   
     postcode = fields.Char(string='Postcode')
     date_availability = fields.Date(string='Available From', default=lambda self: self._default_date_availability(), copy=False)
     expected_price = fields.Float(string='Expected Price', required=True)
