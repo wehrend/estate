@@ -6,6 +6,7 @@ class EstatePropertyTags(models.Model):
     _order = 'name'
 
     name = fields.Char(string='Name', required=True)
+    color = fields.Integer("Color Index")
 
 # ---------------------------------------- Constraints -------------------------------------
     _unique_name = models.Constraint(
