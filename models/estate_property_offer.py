@@ -1,4 +1,5 @@
 from dateutil.relativedelta import relativedelta
+from odoo.tools.float_utils import float_compare
 
 from odoo import api, models, fields
 from odoo.exceptions import UserError
