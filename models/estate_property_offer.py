@@ -35,6 +35,17 @@ class EstatePropertyOffer(models.Model):
             date = offer.create_date.date() if offer.create_date else fields.Date.today()
             offer.validity = (offer.date_deadline - date).days
 
+# ---------------------------------------- CRUD Methods -------------------------------------
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            prop = self.env["estate.property"].browse(vals["property_id"])
+            if float_compare(vals["price"], prop.best_price, precision_rounding=0.01) <= 0:
+                raise UserError(f"The offer must be higher than {prop.best_price:.2f}.")
+            prop.state = "offer_received"
+        return super().create(vals_list)
+
 # ---------------------------------------- Action Methods -------------------------------------
 
     def action_accept(self):
