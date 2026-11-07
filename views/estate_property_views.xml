@@ -10,7 +10,7 @@
         <field name="name">estate.property.list</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">  
-        <list string="Real Estate Properties">
+        <list string="Real Estate Properties" decoration-success="state in ('offer_received', 'offer_accepted')" decoration-muted="state == 'sold'" decoration-bf="state == 'offer_accepted'">
             <field name="name"/>
             <field name="postcode"/>
             <field name="property_type_id"/>
@@ -18,7 +18,8 @@
             <field name="living_area"/>
             <field name="expected_price"/>
             <field name="selling_price"/>
-            <field name="date_availability"/> 
+            <field name="date_availability" optional="hide"/> 
+            <field name="state" invisible="state == 'new'"/>
         </list>
     </field>
 </record>
@@ -71,13 +72,13 @@
                         <field name="facades"/>
                         <field name="garage"/>
                         <field name="garden"/>
-                        <field name="garden_area"/>
-                        <field name="garden_orientation"/>
+                        <field name="garden_area" attrs="{'invisible': [('garden', '=', False)]}"/>
+                        <field name="garden_orientation" attrs="{'invisible': [('garden', '=', False)]}"/>
                         <field name="total_area"/>
                     </group>
                     </page>
                      <page string="Offers">
-                        <field name="offer_ids"/>
+                        <field name="offer_ids" readonly="state in ('offer_accepted', 'sold', 'canceled')"/>
                     </page>
                     <page string="Other Info">
                      <group>
