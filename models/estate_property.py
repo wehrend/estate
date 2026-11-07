@@ -81,3 +81,16 @@ class EstateProperty(models.Model):
         if "sold" in self.mapped("state"):
             raise UserError("Sold properties cannot be canceled.")
         return self.write({"state": "canceled"})
+
+# ---------------------------------------- Constraints -------------------------------------
+
+
+    _check_expected_price = models.Constraint(
+        'CHECK("expected_price" > 0 )',
+        "The expected price must be strictly positive."
+        )
+
+    _check_selling_price = models.Constraint(           
+        'CHECK("selling_price" >= 0 )',
+        "The selling price must be positive or zero."
+        )

@@ -57,3 +57,10 @@ class EstatePropertyOffer(models.Model):
                 "state": "refused",
             }
         )
+
+# ---------------------------------------- Constraints -------------------------------------
+
+    _check_price = models.Constraint(
+        'CHECK(price > 0)',
+        'The offer price must be strictly positive.',
+    )
