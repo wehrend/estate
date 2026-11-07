@@ -16,6 +16,7 @@ class EstatePropertyOffer(models.Model):
     validity = fields.Integer(string='Validity (days)', default=7)
     partner_id = fields.Many2one('res.partner', string='Partner', required=True)
     property_id = fields.Many2one('estate.property', string='Property', required=True)
+    property_type_id = fields.Many2one(related="property_id.property_type_id", store=True)
     
 
     # Computed
